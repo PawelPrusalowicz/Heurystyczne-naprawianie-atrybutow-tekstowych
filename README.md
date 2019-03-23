@@ -1,0 +1,1 @@
+# Heurystyczne-naprawianie-atrybutow-tekstowych
