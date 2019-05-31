@@ -1,0 +1,8 @@
+
+test/.DS_Store
+src/.DS_Store
+resources/.DS_Store
+.DS_Store
+test/__pycache__/__init__.cpython-36.pyc
+test/__pycache__/test_text_correction.cpython-36.pyc
+test/__pycache__/text_correction.cpython-36.pyc
