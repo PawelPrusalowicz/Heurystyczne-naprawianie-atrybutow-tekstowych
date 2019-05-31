@@ -13,4 +13,7 @@ po odnalezieniu w terminalu folderu, w którym znajdują się pliki, wpisać:
 scons -boost_python
 
 następnie można uruchomić test poprzez:
-python3 text_correction_test.py
+python3 -m test.text_correction
+
+uruchomienie testu jednostkowego:
+python3 -m test.test_text_correction
