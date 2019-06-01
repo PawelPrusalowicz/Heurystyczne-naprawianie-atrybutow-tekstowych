@@ -28,8 +28,9 @@ private:
     void create_inserts(const string& word);
     
     set<string> create_edits(const string& word);
-    
     set<string> create_double_edits(const string& word);
+    
+    unordered_map<string,int> matches;
     
 public:
     /*
@@ -50,7 +51,9 @@ public:
     vector<string> get_double_edits(const string& word);
     
     vector<string> get_top_matches(const string& word, unsigned int limit);
-    string get_best_match(string word);
+    void findMatches(string word);
+    
+    unordered_map<string,int> get_matches(string word);
 
     
 };

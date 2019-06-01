@@ -11,6 +11,7 @@
 
 Text_Correction::Text_Correction() {
     loadDictionary("resources/wordlist.txt");
+    word_popularity = new Word_Popularity("resources/popular_words.txt");
 }
 
 void Text_Correction::loadDictionary(string path){
@@ -38,31 +39,74 @@ boost::python::list Text_Correction::correctData(boost::python::list ns) {
     
     Norvig norvig(dictionary);
         
-    vector <string> vec;
+    vector <string> wordList;
     
     for (int i = 0; i < len(ns); ++i)
     {
-        vec.push_back(boost::python::extract<string>(ns[i]));
+        wordList.push_back(boost::python::extract<string>(ns[i]));
     }
     
     
-    boost::python::list ret;
-    for(unsigned int i=0; i< vec.size(); i++){
-        
+    boost::python::list result;
+    for(unsigned int i=0; i< wordList.size(); i++){
     
-        if (dictionary.find(vec[i]) != dictionary.end()){
-            ret.append(vec[i]);
+        if (dictionary.find(wordList[i]) != dictionary.end()){
+            result.append(wordList[i]);
         }
         else {
-            string s = norvig.get_best_match(vec[i]);
-            cout << "Word: " << vec[i] << " -> " << s << endl;
             
-            ret.append(s);
+            unordered_map <string, int> similar_results = norvig.get_matches(wordList[i]);
+            Word_Rating word_rating;
+            
+            string most_probable_match = word_rating.findMostProblableResult(word_popularity->word_occurrences, similar_results, wordList[i]);
+            
+            cout << "Word: " << wordList[i] << " -> " << most_probable_match << endl;
+            
+            result.append (most_probable_match);
         }
         
     }
-    return ret;
+    return result;
     
+}
+
+
+// The cost and a distance for vector initialization
+
+
+
+boost::python::list Text_Correction::trieCorrection(boost::python::list ns) {
+    
+    Trie_Algorithm* trie = new Trie_Algorithm("resources/wordlist.txt");
+    
+    vector <string> wordList;
+    for (int i = 0; i < len(ns); ++i)
+    {
+        wordList.push_back(boost::python::extract<string>(ns[i]));
+    }
+
+    boost::python::list result;
+    for(unsigned int i=0; i< wordList.size(); i++){
+        
+
+        if (dictionary.find(wordList[i]) != dictionary.end()){
+            result.append(wordList[i]);
+        }
+        else {
+            unordered_map <string, int> similar_results = trie->searchMatches(wordList[i]);
+            Word_Rating word_rating;
+            
+            string most_probable_result = word_rating.findMostProblableResult(word_popularity->word_occurrences, similar_results, wordList[i]);
+                        
+            cout << "Word: " << wordList[i] << " -> " << most_probable_result << endl;
+
+            result.append(most_probable_result);
+        }
+    
+    }
+    
+    return result;
+
 }
 
 
@@ -84,9 +128,6 @@ void initModule() {
 }
 
 
-
-
-
 #include <boost/python.hpp>
 
 using namespace boost;
@@ -99,11 +140,10 @@ BOOST_PYTHON_MODULE(text_correction)
     class_<Text_Correction>("Text_Correction")
     .def( "correctData", &Text_Correction::correctData)
     .def( "loadDictionary", &Text_Correction::loadDictionary)
+    .def( "trieCorrection", &Text_Correction::trieCorrection)
     .def( "info", &Text_Correction::info)
     .def( "getDictionary", &Text_Correction::getDictionary)
 
-    
     ;
     
-
 }

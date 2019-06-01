@@ -5,11 +5,15 @@
 #include <set>
 #include <string>
 #include <fstream>
-#include <unordered_set>
+#include <unordered_map>
 #include <vector>
 #include <algorithm>
 #include <boost/python.hpp>
 #include "norvig.h"
+#include "trie.h"
+#include "trie_algorithm.h"
+#include "word_popularity.h"
+#include "word_rating.h"
 
 
 using namespace std;
@@ -23,14 +27,16 @@ private:
     
     
 public:
+    Word_Popularity* word_popularity;
     
     Text_Correction();
     void loadDictionary(string path);
+    //void loadWordPopularity(string path);
     boost::python::list correctData(boost::python::list ns);
+    boost::python::list trieCorrection(boost::python::list ns);
     boost::python::list getDictionary();
     
     string info();
-    
     
 };
 

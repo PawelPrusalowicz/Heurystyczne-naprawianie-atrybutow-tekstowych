@@ -4,12 +4,13 @@
 #pragma warning(disable:4244)
 #endif
 
-
-#include <stdio.h>
-#include "norvig.h"
-
 #include <queue>
 #include <iostream>
+#include <unordered_map>
+#include <stdio.h>
+
+#include "norvig.h"
+
 
 namespace py = boost::python;
 
@@ -193,7 +194,7 @@ vector<string> Norvig::get_top_matches(const string &word, unsigned int limit) {
     return single_edits;
 }
 
-std::string Norvig::get_best_match(string word) {
+void Norvig::findMatches(string word) {
 
     vector<string> single_edits = get_single_edits(word);
     vector<string> double_edits = get_double_edits(word);
@@ -204,12 +205,42 @@ std::string Norvig::get_best_match(string word) {
             single_edits.push_back(str);
     }
     
-    set_priority(single_edits, word);
+    //set_priority(single_edits, word);
     
     if (single_edits.empty()){
-        single_edits.push_back(word);
+        double_edits.push_back(word);
     }
-    string a = single_edits[0];
-    return a;
+}
+
+std::unordered_map<string,int> Norvig::get_matches(string word) {
+    
+    matches.clear();
+    
+    findMatches(word);
+    
+    vector<string> single_edits = get_single_edits(word);
+    vector<string> double_edits = get_double_edits(word);
+    
+    for(auto match: single_edits) {
+        
+        matches.insert ({match, 1});
+        //cout << "norvig 1 " <<  match << endl;
+    }
+    
+    if (matches.empty()){
+        
+        for(auto match: double_edits) {
+            
+            matches.insert ({match, 2});
+        }
+        
+    }
+    
+    if (matches.empty()){
+        
+        matches.insert ({word, 0});
+    }
+    
+    return matches;
 }
 

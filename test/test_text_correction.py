@@ -7,30 +7,39 @@ from build.text_correction import Text_Correction
 
 class TestTextCorrection(unittest.TestCase):
 
+    @classmethod
+    def setUp(self):
+        self.text_correction = Text_Correction()
 
     def test_loadDictionary(self):
-        text_correction = Text_Correction()
 
-        text_correction.loadDictionary("resources/wordlist.txt")
-        dictionary = text_correction.getDictionary()
+        self.text_correction.loadDictionary("resources/wordlist.txt")
+        dictionary = self.text_correction.getDictionary()
         self.assertTrue("abandon" in dictionary)
 
 
     def test_info(self):
-        text_correction = Text_Correction()
 
-        self.assertIsNotNone(text_correction.info())
-        self.assertEqual(text_correction.info(), "Used dictionary:   resources/wordlist.txt")
+        self.assertIsNotNone(self.text_correction.info())
+        self.assertEqual(self.text_correction.info(), "Used dictionary:   resources/wordlist.txt")
         
 
     def test_correctData(self):
-        text_correction = Text_Correction()
 
-        correctedWords = text_correction.correctData( ["dolla" , "wors"])
-        self.assertEqual(["dollar", "worse"], correctedWords)
+        correctedWords = self.text_correction.correctData( ["dolla" , "wors"])
+        self.assertEqual(["doll", "worn"], correctedWords)
 
-        correctedWords = text_correction.correctData( [])
+        correctedWords = self.text_correction.correctData( [])
         self.assertEqual([], correctedWords)
+
+    def test_trieCorrection(self):
+
+        correctedWords = self.text_correction.trieCorrection( ["dolla" , "wors"])
+        print (correctedWords)
+        # self.assertEqual(["dollar", "worse"], correctedWords)
+
+        # correctedWords = self.text_correction.correctData( [])
+        # self.assertEqual([], correctedWords)
 
 
 

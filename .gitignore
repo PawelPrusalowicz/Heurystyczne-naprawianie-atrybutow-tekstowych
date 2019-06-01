@@ -6,3 +6,10 @@ resources/.DS_Store
 test/__pycache__/__init__.cpython-36.pyc
 test/__pycache__/test_text_correction.cpython-36.pyc
 test/__pycache__/text_correction.cpython-36.pyc
+*.dblite
+*.so
+*.so
+build/libtext_correction.so
+build/libtext_correction.so
+src/word_popularity.os
+src/text_correction.os

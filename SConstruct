@@ -24,7 +24,7 @@ def build_link_to_lib( target, source, env):
    shutil.copy( str(source[0]), str(target[0]) )
    return
 
-dll = e.SharedLibrary(source = ["src/text_correction.cpp","src/norvig.cpp"], target = 'build/text_correction' )
+dll = e.SharedLibrary(source = ["src/text_correction.cpp","src/norvig.cpp","src/trie.cpp","src/trie_algorithm.cpp", "src/word_popularity.cpp", "src/word_rating.cpp" ], target = 'build/text_correction' )
 e.Command(target, dll, build_link_to_lib )
 
 
