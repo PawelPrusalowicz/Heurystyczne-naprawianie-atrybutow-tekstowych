@@ -13,3 +13,9 @@ build/libtext_correction.so
 build/libtext_correction.so
 src/word_popularity.os
 src/text_correction.os
+src/trie_algorithm.os
+src/word_rating.os
+src/trie.os
+src/text_correction.os
+src/norvig.os
+*.so

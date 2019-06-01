@@ -81,7 +81,7 @@ unordered_map <string, int> Trie_Algorithm::searchMatches(string word, int max_c
     
     if(results.empty()){
         if (max_cost > too_big_distance){
-            results.insert(word, 0);
+            results.insert({word, 0});
         }
         else {
             return searchMatches(word, max_cost + 1);
