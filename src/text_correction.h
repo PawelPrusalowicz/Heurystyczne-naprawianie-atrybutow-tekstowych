@@ -8,12 +8,14 @@
 #include <unordered_map>
 #include <vector>
 #include <algorithm>
+#include <memory>
 #include <boost/python.hpp>
 #include "norvig.h"
 #include "trie.h"
 #include "trie_algorithm.h"
 #include "word_popularity.h"
 #include "word_rating.h"
+#include "symspell6.h"
 
 
 using namespace std;
@@ -34,6 +36,7 @@ public:
     //void loadWordPopularity(string path);
     boost::python::list correctData(boost::python::list ns);
     boost::python::list trieCorrection(boost::python::list ns);
+    boost::python::list symSpellCorrection(boost::python::list ns);
     boost::python::list getDictionary();
     
     string info();

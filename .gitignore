@@ -19,3 +19,4 @@ src/trie.os
 src/text_correction.os
 src/norvig.os
 *.so
+src/symspell6.os
