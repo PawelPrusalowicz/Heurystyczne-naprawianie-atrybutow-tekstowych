@@ -31,12 +31,9 @@ private:
 public:
     English_Word_Popularity* word_popularity;
     
-    Text_Correction(boost::python::str dict_path, boost::python::str pop_words_path);
-    //void loadDictionary(string path);
-    //void loadWordPopularity(string path);
+    Text_Correction(boost::python::str dictionary_path, boost::python::str pop_words_path);
+    void loadDictionary(boost::python::str dictionary_path);
     boost::python::list correctData(boost::python::str str_algorithm, bool english_language, boost::python::list ns);
-    //boost::python::list trieCorrection(boost::python::list ns);
-    //boost::python::list symSpellCorrection(boost::python::list ns);
     boost::python::list getDictionary();
     
     string info();

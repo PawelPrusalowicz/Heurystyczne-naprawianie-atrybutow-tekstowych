@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <iostream>
 
 using namespace std;
 
@@ -24,4 +25,4 @@ private:
 	unordered_set<string> dictionary_set;
 };
 
-#endif
+#endif /* dictionary_h */

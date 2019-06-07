@@ -38,8 +38,19 @@ list_numpy = np.array(initialWordList)
 
 #test czyszczenia danych. dziala tak samo dla pandas.series i numpy.array
 correctedWordList = correction.correctData("trie", True, initialWordList)
+correction.loadDictionary('resources/text_with_mistakes.txt')
+print('get1')
+lista = correction.getDictionary()
+print(lista)
+correction.loadDictionary('resources/probny.txt')
+print('get2')
+lista = correction.getDictionary()
+print(lista)
+correction.loadDictionary('resources/text_with_mistakes.txt')
+print('get3')
+lista = correction.getDictionary()
+print(lista)
 
-print (correction.info())
 
 #correctedWordList2 = correction.correctData(data_pandas.tolist())
 #correctedWordList3 = correction.correctData(list_numpy.tolist())

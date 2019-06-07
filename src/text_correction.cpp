@@ -28,7 +28,11 @@ Text_Correction::Text_Correction(boost::python::str dictionary_path, boost::pyth
     
 }
 
+void Text_Correction::loadDictionary(boost::python::str dictionary_path){
+	this->dictionary_path = boost::python::extract<string>(dictionary_path);	
+	Dictionary::getDictionary().loadDictionary( this->dictionary_path );
 
+}
 string Text_Correction::info(){
     return "Used dictionary:   " + dictionary_path;
 }
@@ -57,7 +61,6 @@ boost::python::list Text_Correction::correctData(boost::python::str str_algorith
     else {
         
         correction = new symspell::Symspell_Adapter(Dictionary::getDictionary().getWordsSet());
-        cout << "Symspell working" << endl;
     }
     
 	
@@ -123,6 +126,7 @@ BOOST_PYTHON_MODULE(text_correction)
     
     class_<Text_Correction>("Text_Correction", init<boost::python::str, boost::python::str>())
     .def( "correctData", &Text_Correction::correctData)
+	.def( "loadDictionary", &Text_Correction::loadDictionary)
  	.def( "info", &Text_Correction::info)
     .def( "getDictionary", &Text_Correction::getDictionary)
 
