@@ -8,26 +8,24 @@
 #include <string>
 #include <memory>
 #include "text_correction.h"
+#include "algorithms/symspell_adapter.h"
+
+#include <boost/python.hpp>
+
+using namespace boost;
+using namespace boost::python;
 
 
-Text_Correction::Text_Correction() {
-    loadDictionary("resources/wordlist.txt");
-    word_popularity = new Word_Popularity("resources/popular_words.txt");
-}
 
-void Text_Correction::loadDictionary(string path){
+
+Text_Correction::Text_Correction(boost::python::str dictionary_path, boost::python::str pop_words_path) {
     
-    dictionary_path = path;
+	Dictionary::getDictionary();
+	this->dictionary_path = boost::python::extract<string>(dictionary_path);
+	string p_path = boost::python::extract<string>(pop_words_path);
+	Dictionary::getDictionary().loadDictionary( this->dictionary_path );
+    word_popularity = new English_Word_Popularity(p_path);
     
-    ifstream input(path);
-    
-    if (input.is_open()) {
-        string line;
-        while ( getline(input,line) ) {
-            dictionary.insert(line);
-        }
-        input.close();
-    }
 }
 
 
@@ -36,30 +34,57 @@ string Text_Correction::info(){
 }
 
 
-boost::python::list Text_Correction::correctData(boost::python::list ns) {
+
+boost::python::list Text_Correction::correctData(boost::python::str str_algorithm, bool english_language, boost::python::list ns) {
     
-    Norvig norvig(dictionary);
-        
-    vector <string> wordList;
-    
+	string type = boost::python::extract<string>(str_algorithm);
+	vector <string> wordList;
     for (int i = 0; i < len(ns); ++i)
     {
         wordList.push_back(boost::python::extract<string>(ns[i]));
     }
     
     
-    boost::python::list result;
-    for(unsigned int i=0; i< wordList.size(); i++){
+    if (type == "norvig"){
+        
+        correction = new Norvig(Dictionary::getDictionary().getWordsSet());
+    }
+    else if (type == "trie") {
+        
+        correction = new Trie_Algorithm(dictionary_path);
+    }
     
-        if (dictionary.find(wordList[i]) != dictionary.end()){
+    else {
+        
+        correction = new symspell::Symspell_Adapter(Dictionary::getDictionary().getWordsSet());
+        cout << "Symspell working" << endl;
+    }
+    
+	
+    Word_Rating word_rating;
+    boost::python::list result;
+    
+    
+    
+    for(unsigned int i=0; i< wordList.size(); i++) {
+		
+        if (Dictionary::getDictionary().getWordsSet().find(wordList[i]) != Dictionary::getDictionary().getWordsSet().end()) {
+            
             result.append(wordList[i]);
         }
         else {
             
-            unordered_map <string, int> similar_results = norvig.get_matches(wordList[i]);
-            Word_Rating word_rating;
             
-            string most_probable_match = word_rating.findMostProblableResult(word_popularity->word_occurrences, similar_results, wordList[i]);
+            unordered_map <string, int> matches = correction->get_matches(wordList[i]);
+            
+            
+            // WYŚWIETLANIE MATCHY DLA SŁOWA. MOŻE DODAĆ TAKĄ FUNCJĘ? FAJNA SPRAWA :D
+//            for (std::pair<std::string, int> element : matches)
+//            {
+//                std::cout << element.first << " :: " << element.second << std::endl;
+//            }
+            
+            string most_probable_match = word_rating.findMostProbableResult ( matches, wordList[i], english_language);
             
             cout << "Word: " << wordList[i] << " -> " << most_probable_match << endl;
             
@@ -72,128 +97,12 @@ boost::python::list Text_Correction::correctData(boost::python::list ns) {
 }
 
 
-// The cost and a distance for vector initialization
-
-
-
-boost::python::list Text_Correction::trieCorrection(boost::python::list ns) {
-    
-    Trie_Algorithm* trie = new Trie_Algorithm("resources/wordlist.txt");
-    
-    vector <string> wordList;
-    for (int i = 0; i < len(ns); ++i)
-    {
-        wordList.push_back(boost::python::extract<string>(ns[i]));
-    }
-
-    boost::python::list result;
-    for(unsigned int i=0; i< wordList.size(); i++){
-        
-
-        if (dictionary.find(wordList[i]) != dictionary.end()){
-            result.append(wordList[i]);
-        }
-        else {
-            unordered_map <string, int> similar_results = trie->searchMatches(wordList[i]);
-            Word_Rating word_rating;
-            
-            string most_probable_result = word_rating.findMostProblableResult(word_popularity->word_occurrences, similar_results, wordList[i]);
-                        
-            cout << "Word: " << wordList[i] << " -> " << most_probable_result << endl;
-
-            result.append(most_probable_result);
-        }
-    
-    }
-    
-    return result;
-
-}
-
-
-
-boost::python::list Text_Correction::symSpellCorrection(boost::python::list ns) {
-    
-    //Trie_Algorithm* trie = new Trie_Algorithm("resources/wordlist.txt");
-    
-    symspell::SymSpell symSpell(16, 2, 3);
-    
-    //std::unordered_set<T> mySet;
-    for (const auto& elem: dictionary) {
-        
-        char cstr[elem.size() + 1];
-        strcpy(cstr, elem.c_str());
-        symSpell.CreateDictionaryEntry(cstr, 10);
-        
-    }
-    
-    
-    
-//    or (unsigned i=0; i < dictionary.size(); i++) {
-//        sum += polygon[i];
-//        symSpell.CreateDictionaryEntry("pips", 10);
-//    }
-    
-    
-    vector <string> wordList;
-    for (int i = 0; i < len(ns); ++i)
-    {
-        wordList.push_back(boost::python::extract<string>(ns[i]));
-    }
-    
-    boost::python::list result;
-    for(unsigned int i=0; i< wordList.size(); i++){
-        
-        
-        if (dictionary.find(wordList[i]) != dictionary.end()){
-            
-            result.append(wordList[i]);
-        }
-        else {
-//            unordered_map <string, int> similar_results = trie->searchMatches(wordList[i]);
-            vector<std::unique_ptr<symspell::SuggestItem>> result_vector;
-            
-            char cstr2[wordList[i].size() + 1];
-            strcpy(cstr2, wordList[i].c_str());
-            
-            symSpell.Lookup(cstr2, symspell::Verbosity::All, 2, result_vector);
-            
-            unordered_map <string, int> similar_results;
-            
-            for (unsigned i=0; i < result_vector.size(); i++) {
-                
-                
-                string str(result_vector[i]->term );
-                similar_results.insert({ str, result_vector[i]->distance});
-            }
-            
-            if (similar_results.empty()){
-                similar_results.insert({ wordList[i], 0});
-            }
-            
-            
-            Word_Rating word_rating;
-            
-            string most_probable_result = word_rating.findMostProblableResult(word_popularity->word_occurrences, similar_results, wordList[i]);
-            
-            cout << "Word: " << wordList[i] << " -> " << most_probable_result << endl;
-            
-            result.append(most_probable_result);
-        }
-        
-    }
-    
-    return result;
-    
-}
-
-
 
 boost::python::list Text_Correction::getDictionary() {
     
     boost::python::list dictionaryWords;
     
-    for(auto f : dictionary) {
+    for(auto f : Dictionary::getDictionary().getWordsSet()) {
         dictionaryWords.append(f);
     }
     
@@ -206,23 +115,20 @@ void initModule() {
 }
 
 
-#include <boost/python.hpp>
 
-using namespace boost;
-using namespace boost::python;
 
 BOOST_PYTHON_MODULE(text_correction)
 {
     initModule();
     
-    class_<Text_Correction>("Text_Correction")
+    class_<Text_Correction>("Text_Correction", init<boost::python::str, boost::python::str>())
     .def( "correctData", &Text_Correction::correctData)
-    .def( "loadDictionary", &Text_Correction::loadDictionary)
-    .def( "trieCorrection", &Text_Correction::trieCorrection)
-    .def( "symSpellCorrection", &Text_Correction::symSpellCorrection)
-    .def( "info", &Text_Correction::info)
+ 	.def( "info", &Text_Correction::info)
     .def( "getDictionary", &Text_Correction::getDictionary)
 
     ;
     
 }
+
+
+

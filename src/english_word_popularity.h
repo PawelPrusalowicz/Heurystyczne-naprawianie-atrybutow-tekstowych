@@ -13,9 +13,13 @@
 
 using namespace std;
 
-class Word_Popularity {
+class English_Word_Popularity {
     
 private:
+    
+    //map contains a word and its percentage in english language
+    unordered_map<string,double> word_percentage;
+    
     
     string dictionary_path;
     int number_of_words;
@@ -23,10 +27,12 @@ private:
     
 public:
     
-    unordered_map<string,int> word_occurrences;
+    English_Word_Popularity (string path);
+    void loadWordPopularity (string path);
+    double getWordPercentageInLanguage (string word);
     
-    Word_Popularity(string path);
-    void loadWordPopularity(string path);
+    //unordered_map<string,double> getWordPercentage();
+    
     
 };
 

@@ -13,7 +13,7 @@ class TestTextCorrection(unittest.TestCase):
 
     def test_loadDictionary(self):
 
-        self.text_correction.loadDictionary("resources/wordlist.txt")
+        self.text_correction.loadDictionary("resources/dictionary_example.txt")
         dictionary = self.text_correction.getDictionary()
         self.assertTrue("abandon" in dictionary)
 
@@ -21,7 +21,7 @@ class TestTextCorrection(unittest.TestCase):
     def test_info(self):
 
         self.assertIsNotNone(self.text_correction.info())
-        self.assertEqual(self.text_correction.info(), "Used dictionary:   resources/wordlist.txt")
+        self.assertEqual(self.text_correction.info(), "Used dictionary:   resources/dictionary_example.txt")
         
 
     def test_correctData(self):

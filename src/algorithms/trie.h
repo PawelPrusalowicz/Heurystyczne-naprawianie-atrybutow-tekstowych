@@ -11,20 +11,20 @@
 #include <boost/python.hpp>
 
 #include <iostream>
-
 #include <cctype>
 #include <unordered_map>
 
 using namespace std;
 
-class Trie{
+class Trie {
+    
 public:
+    
     string word;
     unordered_map <char, Trie*> children;
     
-    // this function works
-    // with the argument flag set to zero
-    int insert(string w, int flag, string remaining_w );
+    int insert(string added_word, bool structure_beginning, string remaining_letters );
+    
 };
 
 

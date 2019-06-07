@@ -9,8 +9,6 @@ test/__pycache__/text_correction.cpython-36.pyc
 *.dblite
 *.so
 *.so
-build/libtext_correction.so
-build/libtext_correction.so
 src/word_popularity.os
 src/text_correction.os
 src/trie_algorithm.os
@@ -20,3 +18,14 @@ src/text_correction.os
 src/norvig.os
 *.so
 src/symspell6.os
+
+src/algorithms/norvig.os
+src/algorithms/symspell_adapter.os
+src/algorithms/trie.os
+src/algorithms/trie_algorithm.os
+src/corrector.os
+src/dictionary.os
+src/english_word_popularity.os
+src/norvig.os
+src/norvig.os
+src/norvig.os

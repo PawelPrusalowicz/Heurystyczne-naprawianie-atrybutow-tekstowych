@@ -10,33 +10,33 @@
 #include <algorithm>
 #include <memory>
 #include <boost/python.hpp>
-#include "norvig.h"
-#include "trie.h"
-#include "trie_algorithm.h"
-#include "word_popularity.h"
+#include "algorithms/corrector.h"
+#include "algorithms/norvig.h"
+#include "algorithms/trie.h"
+#include "algorithms/trie_algorithm.h"
+#include "english_word_popularity.h"
 #include "word_rating.h"
-#include "symspell6.h"
+#include "dictionary.h"
 
 
 using namespace std;
 
 class Text_Correction {
 private:
-    /* unordered_set used for O(1) look-up time */
-    unordered_set<string> dictionary;
+
     vector <string> text;
     string dictionary_path;
-    
+    Corrector* correction;
     
 public:
-    Word_Popularity* word_popularity;
+    English_Word_Popularity* word_popularity;
     
-    Text_Correction();
-    void loadDictionary(string path);
+    Text_Correction(boost::python::str dict_path, boost::python::str pop_words_path);
+    //void loadDictionary(string path);
     //void loadWordPopularity(string path);
-    boost::python::list correctData(boost::python::list ns);
-    boost::python::list trieCorrection(boost::python::list ns);
-    boost::python::list symSpellCorrection(boost::python::list ns);
+    boost::python::list correctData(boost::python::str str_algorithm, bool english_language, boost::python::list ns);
+    //boost::python::list trieCorrection(boost::python::list ns);
+    //boost::python::list symSpellCorrection(boost::python::list ns);
     boost::python::list getDictionary();
     
     string info();
@@ -44,4 +44,4 @@ public:
 };
 
 
-#endif /* norvig_h */
+#endif /* text_correction_h */

@@ -13,46 +13,38 @@
 
 #include "word_rating.h"
 
+#define substitution_mistake_probability 1.65
+#define insertion_mistake_probability 0.67
+#define omission_mistake_probability 0.8
+
 using namespace std;
 
 
-string Word_Rating::findMostProblableResult(unordered_map<string,int> word_popularity, unordered_map<string,int> best_matches, string word_with_mistake) {
+string Word_Rating::findMostProbableResult( unordered_map<string,int> best_matches, string word_with_mistake, bool english_language ) {
+    
+    // if no matches were found, the word stays the same
+    if (best_matches.empty()) {
+        
+        return word_with_mistake;
+    }
+
     
     unordered_map<string,double> matchProbabilities;
     
-    
+    if ( english_language ) {
+        
+        english_word_popularity = new English_Word_Popularity("resources/english_words_popularity.txt");
+    }
+        
+        
     for (auto& it_best_matches: best_matches) {
         
-
-        if (it_best_matches.second == 0) {
-            
-            matchProbabilities.insert({it_best_matches.first, it_best_matches.second});
-            break;
-        }
+        double mistake_probability_coefficient = countMistakeProbabilityCoefficient(it_best_matches.first, it_best_matches.second, word_with_mistake, english_language);
         
-        double mistake_probability_coefficient = Word_Rating::countMistakeProbabilityCoefficient(it_best_matches.first, it_best_matches.second, word_with_mistake);
-        
-        
-        
-        //finding result in popularity list
-        unordered_map<string, int>::iterator it_word_popularity = word_popularity.find(it_best_matches.first);
-        
-        if (it_word_popularity != word_popularity.end()){
-            
-            mistake_probability_coefficient += it_word_popularity->second/100000;
-            
-            //cout << "cos  " << it_best_matches.first << " COEFFICIENT : " << mistake_probability_coefficient << endl;
-            
-            matchProbabilities.insert({it_best_matches.first, mistake_probability_coefficient });
-        }
-        else {
-            
-            
-            // if word is not found in word_popularity, it's popularity is 1
-            matchProbabilities.insert({it_best_matches.first, mistake_probability_coefficient});
-        }
+        matchProbabilities.insert( {it_best_matches.first, mistake_probability_coefficient } );
         
     }
+    
     
     string best_match;
     double highest_probability = 0;
@@ -61,33 +53,67 @@ string Word_Rating::findMostProblableResult(unordered_map<string,int> word_popul
         
         if (it.second >= highest_probability){
             
+            //cout << "WORD: " << it.first << " PROBAB: " << it.second << endl;
+            
             highest_probability = it.second;
             best_match = it.first;
         }
     }
     
-    //return best_match->first;
     return best_match;
-
     
 }
 
-double Word_Rating::countMistakeProbabilityCoefficient(string match, int correction_number, string word_with_mistake){
+
+
+double Word_Rating::countMistakeProbabilityCoefficient(string match, int edit_distance, string word_with_mistake, bool english_language){
     
-    double mistake_probability_coefficient;
+    double mistake_probability_coefficient = 0;
     
-    if (match.length() == word_with_mistake.length() ){
-        mistake_probability_coefficient = 0.18;
+    
+    mistake_probability_coefficient += 4/edit_distance;
+    
+    //substitutions
+    if ( match.length() == word_with_mistake.length() ){
+        mistake_probability_coefficient *= substitution_mistake_probability;
     }
-    else if ( match.length() < word_with_mistake.length() ) {
-        mistake_probability_coefficient = 0.45;
+    //insertion
+    else if ( word_with_mistake.length() > match.length() ) {
+        mistake_probability_coefficient *= insertion_mistake_probability;
     }
+    //omission
     else {
-        mistake_probability_coefficient = 0.12;
+        mistake_probability_coefficient += omission_mistake_probability;
     }
     
-    mistake_probability_coefficient /= (correction_number*correction_number*correction_number*correction_number*correction_number);
+    
+    if ( consistsOfTheSameLetters(word_with_mistake, match)){
+        //cout << word_with_mistake << " " << match   << endl;
+        mistake_probability_coefficient += 5;
+    }
+    
+    
+    if (english_language){
+        
+        mistake_probability_coefficient += english_word_popularity->getWordPercentageInLanguage(match) ;
+    }
     
     return mistake_probability_coefficient;
+}
+
+
+bool Word_Rating::consistsOfTheSameLetters(string word1, string word2) {
+    set<char> set1, set2;
     
+    for_each(word1.begin(), word1.end(),
+             [&set1] (char c) -> void {
+                 set1.insert(c);
+             });
+    
+    for_each(word2.begin(), word2.end(),
+             [&set2] (char c) -> void {
+                 set2.insert(c);
+             });
+    
+    return set1 == set2;
 }

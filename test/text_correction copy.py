@@ -9,21 +9,21 @@ unwantedSigns = [ ',', '.', '-', ';']
 def clearData ( data, unwantedSigns):
     for sign in unwantedSigns:
         data = data.replace(sign, '')
-    
+
     return data
 
 
-correction = Text_Correction('resources/dictionary_example.txt','resources/english_words_popularity.txt')
+correction = Text_Correction('resources/wordlist.txt','resources/popularwords.txt')
 
 # dostarczenie i wstepne obrobienie danych
 
 
-with open('resources/text_with_mistakes.txt','r') as f:
+with open('resources/textwithmistakes.txt','r') as f:
 
     for line in f:
         for word in line.split():
             word = clearData (word, unwantedSigns)
-            
+
             if word:
                 print (word)
                 initialWordList.append(word.lower())
@@ -37,7 +37,7 @@ list_numpy = np.array(initialWordList)
 #correction.info()
 
 #test czyszczenia danych. dziala tak samo dla pandas.series i numpy.array
-correctedWordList = correction.correctData("trie", True, initialWordList)
+correctedWordList = correction.correctData("norvig", True, initialWordList)
 
 print (correction.info())
 
