@@ -1,0 +1,76 @@
+File 'src/dictionary.cpp'
+Lines executed:62.50% of 16
+Creating 'dictionary.cpp.gcov'
+
+File '/usr/include/c++/7/iostream'
+Lines executed:100.00% of 1
+Creating 'iostream.gcov'
+
+File '/usr/include/c++/7/bits/basic_string.h'
+Lines executed:100.00% of 6
+Creating 'basic_string.h.gcov'
+
+File '/usr/include/c++/7/bits/hashtable_policy.h'
+Lines executed:89.81% of 108
+Creating 'hashtable_policy.h.gcov'
+
+File '/usr/include/c++/7/bits/stl_function.h'
+Lines executed:100.00% of 2
+Creating 'stl_function.h.gcov'
+
+File '/usr/include/c++/7/ext/new_allocator.h'
+Lines executed:93.33% of 15
+Creating 'new_allocator.h.gcov'
+
+File '/usr/include/c++/7/bits/move.h'
+Lines executed:100.00% of 6
+Creating 'move.h.gcov'
+
+File '/usr/include/c++/7/bits/hashtable.h'
+Lines executed:72.92% of 144
+Creating 'hashtable.h.gcov'
+
+File '/usr/include/c++/7/bits/alloc_traits.h'
+Lines executed:100.00% of 10
+Creating 'alloc_traits.h.gcov'
+
+File '/usr/include/c++/7/ext/aligned_buffer.h'
+Lines executed:100.00% of 8
+Creating 'aligned_buffer.h.gcov'
+
+File '/usr/include/c++/7/bits/stl_pair.h'
+Lines executed:100.00% of 4
+Creating 'stl_pair.h.gcov'
+
+File '/usr/include/c++/7/bits/allocator.h'
+Lines executed:100.00% of 5
+Creating 'allocator.h.gcov'
+
+File '/usr/include/c++/7/bits/ptr_traits.h'
+Lines executed:100.00% of 2
+Creating 'ptr_traits.h.gcov'
+
+File '/usr/include/c++/7/ext/alloc_traits.h'
+Lines executed:100.00% of 2
+Creating 'alloc_traits.h.gcov'
+
+File '/usr/include/c++/7/bits/unordered_set.h'
+Lines executed:33.33% of 9
+Creating 'unordered_set.h.gcov'
+
+File 'src/dictionary.h'
+Lines executed:100.00% of 2
+Creating 'dictionary.h.gcov'
+
+File '/usr/include/c++/7/bits/functional_hash.h'
+Lines executed:100.00% of 2
+Creating 'functional_hash.h.gcov'
+
+File '/usr/include/c++/7/bits/char_traits.h'
+Lines executed:75.00% of 4
+Creating 'char_traits.h.gcov'
+
+File '/usr/include/c++/7/new'
+Lines executed:66.67% of 3
+Creating 'new.gcov'
+

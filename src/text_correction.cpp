@@ -9,15 +9,24 @@
 #include <memory>
 #include "text_correction.h"
 #include "algorithms/symspell_adapter.h"
-
 #include <boost/python.hpp>
-
+/*!
+*\file
+*\brief Definition of Text_Correction class.
+*
+* File includes implementation of Text_Correction class.
+*/
 using namespace boost;
 using namespace boost::python;
 
 
 
-
+/*!
+* Creates an instance of Text_Correction class. Creates new singleton-dictionary and instance of 
+* English_Word_Popularity with given arguments.
+* \param [in] dictionary_path Path to the file with words to be loaded to the dictionary
+* \param [in] pop_words_path Path to the file with words to be loaded to the dictionary of popular words
+*/
 Text_Correction::Text_Correction(boost::python::str dictionary_path, boost::python::str pop_words_path) {
     
 	Dictionary::getDictionary();
@@ -27,14 +36,34 @@ Text_Correction::Text_Correction(boost::python::str dictionary_path, boost::pyth
     word_popularity = new English_Word_Popularity(p_path);
     
 }
+/*!
+* Loads new dictionary from user level using function from Dictionary class. 
+*/
+void Text_Correction::loadDictionary(boost::python::str dictionary_path){
+    
+	this->dictionary_path = boost::python::extract<string>(dictionary_path);	
+	Dictionary::getDictionary().loadDictionary( this->dictionary_path );
 
-
+}
+/*!
+* \return Returns name of a current dictionary file.
+*/
 string Text_Correction::info(){
     return "Used dictionary:   " + dictionary_path;
 }
 
 
-
+/*!
+* \param[in] str_algorithm Name of the algorithm, three options are available: "norvig", "trie" and "symspell".
+* \param[in] english_language Logical value if the language of 
+*\ param[in] ns List of words to be corrected.
+* If str_algorithm is incorrect, default algorithm is SymSpell. 
+* Text correction consists from: 
+* 1. Loading a list of words and choosing proper correction algorithm
+* 2. Finding most probable matches with chosen algorithm
+* 3. Finding best match using word rating
+* \return List of words after correction
+*/
 boost::python::list Text_Correction::correctData(boost::python::str str_algorithm, bool english_language, boost::python::list ns) {
     
 	string type = boost::python::extract<string>(str_algorithm);
@@ -57,7 +86,6 @@ boost::python::list Text_Correction::correctData(boost::python::str str_algorith
     else {
         
         correction = new symspell::Symspell_Adapter(Dictionary::getDictionary().getWordsSet());
-        cout << "Symspell working" << endl;
     }
     
 	
@@ -77,13 +105,7 @@ boost::python::list Text_Correction::correctData(boost::python::str str_algorith
             
             unordered_map <string, int> matches = correction->get_matches(wordList[i]);
             
-            
-            // WYŚWIETLANIE MATCHY DLA SŁOWA. MOŻE DODAĆ TAKĄ FUNCJĘ? FAJNA SPRAWA :D
-//            for (std::pair<std::string, int> element : matches)
-//            {
-//                std::cout << element.first << " :: " << element.second << std::endl;
-//            }
-            
+
             string most_probable_match = word_rating.findMostProbableResult ( matches, wordList[i], english_language);
             
             cout << "Word: " << wordList[i] << " -> " << most_probable_match << endl;
@@ -109,20 +131,24 @@ boost::python::list Text_Correction::getDictionary() {
     return dictionaryWords;
 }
 
-
+/*!
+* Informs about python module initialization.
+*/
 void initModule() {
 	std::cout << "init module" << std::endl;
 }
 
 
-
-
+/*!
+* \brief Definition of boost python module.
+*/
 BOOST_PYTHON_MODULE(text_correction)
 {
     initModule();
     
     class_<Text_Correction>("Text_Correction", init<boost::python::str, boost::python::str>())
     .def( "correctData", &Text_Correction::correctData)
+	.def( "loadDictionary", &Text_Correction::loadDictionary)
  	.def( "info", &Text_Correction::info)
     .def( "getDictionary", &Text_Correction::getDictionary)
 

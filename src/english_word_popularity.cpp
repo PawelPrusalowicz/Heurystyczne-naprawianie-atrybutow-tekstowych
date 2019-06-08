@@ -3,7 +3,10 @@
 #pragma warning(disable:4100)
 #pragma warning(disable:4244)
 #endif
-
+/*!
+*\file
+*\brief Definition of English_Word_Popularity class.
+*/
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -29,7 +32,10 @@ English_Word_Popularity::English_Word_Popularity(string path) {
     loadWordPopularity(path);
 }
 
-
+/*!
+*\param[in] path Path to the file with most popular words in a language
+* Loads dictionary of most popular words to a map which consists from pairs word-probability
+*/
 void English_Word_Popularity::loadWordPopularity(string path){
     
     ifstream input(path);
@@ -38,24 +44,22 @@ void English_Word_Popularity::loadWordPopularity(string path){
         string line;
     
         getline(input,line);
-        //input >> line;
+        
         vector<string> title_words;
         split(line, title_words);
 
-        int total_number_of_words;
+        double total_number_of_words;
         std::istringstream iss (title_words[0]);
         iss >> total_number_of_words;
 
-        //number_of_words = total_number;
 
         while ( getline(input,line) ) {
-        //while(input >> line){
         
             vector<string> words;
             split(line, words);
 
             
-            int number_of_occurrences;
+            double number_of_occurrences;
             // words[0] represents the number of occurrences of a word
             std::istringstream iss (words[0]);
             iss >> number_of_occurrences;
@@ -65,11 +69,11 @@ void English_Word_Popularity::loadWordPopularity(string path){
             unordered_map<string, double>::iterator it = word_percentage.find(words[1]);
             
             if (it == word_percentage.end()){
-                word_percentage.insert( {words[1], number_of_occurrences/total_number_of_words} );
+                word_percentage.insert( {words[1], (number_of_occurrences/total_number_of_words) } );
             }
             else {
                 //in case some words are repeated in file
-                it->second += number_of_occurrences/total_number_of_words;
+                it->second += (number_of_occurrences/total_number_of_words);
             }
             
         }
@@ -78,7 +82,9 @@ void English_Word_Popularity::loadWordPopularity(string path){
     }
 }
 
-
+/*!
+*\return Popularity of a word according to a popular-words-dictionary as a number from 0 to 1
+*/
 double English_Word_Popularity::getWordPercentageInLanguage (string word) {
     
     

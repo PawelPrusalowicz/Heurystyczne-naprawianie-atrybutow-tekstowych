@@ -10,10 +10,13 @@ wymagane:
 
 proces kompilacji (Linux):
 po odnalezieniu w terminalu folderu, w którym znajdują się pliki, wpisać:
-scons -boost_python
+scons 
 
-następnie można uruchomić test poprzez:
-python3 -m test.text_correction
-
-uruchomienie testu jednostkowego:
+następnie test bibliteki można uruchomić (z katalogu głównego) poprzez:
 python3 -m test.test_text_correction
+
+aby uruchomić jesty jednostkowe (z katalogu głównego):
+bash run_unit_test.sh 
+
+aby uruchomić test szybkości algorytmów (z katalogu głównego):
+bash run_speed_test.sh

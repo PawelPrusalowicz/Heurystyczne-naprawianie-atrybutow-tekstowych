@@ -1,0 +1,9 @@
+digraph "Norvig"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node2 [label="{Norvig\n|- dictionary\l- edits\l- matches\l- alphabet\l|+ Norvig()\l+ Norvig()\l+ get_single_edits()\l+ get_double_edits()\l+ contains()\l+ get_matches()\l- create_deletes()\l- create_transposes()\l- create_replaces()\l- create_inserts()\l- create_edits()\l- create_double_edits()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Declaration of methods and structures needed to perform word correction using Norvig algorithm."];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node3 [label="{Corrector\n||+ Corrector()\l+ get_matches()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_corrector.html",tooltip="Provides a base for correction algorithms."];
+}

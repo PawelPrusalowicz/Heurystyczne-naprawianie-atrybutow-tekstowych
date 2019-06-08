@@ -1,0 +1,104 @@
+File 'src/algorithms/trie_algorithm.cpp'
+Lines executed:53.49% of 43
+Creating 'trie_algorithm.cpp.gcov'
+
+File '/usr/include/c++/7/iostream'
+Lines executed:100.00% of 1
+Creating 'iostream.gcov'
+
+File '/usr/include/c++/7/ext/new_allocator.h'
+Lines executed:73.33% of 15
+Creating 'new_allocator.h.gcov'
+
+File '/usr/include/c++/7/bits/alloc_traits.h'
+Lines executed:50.00% of 8
+Creating 'alloc_traits.h.gcov'
+
+File '/usr/include/c++/7/bits/basic_string.h'
+Lines executed:20.00% of 10
+Creating 'basic_string.h.gcov'
+
+File '/usr/include/c++/7/bits/hashtable_policy.h'
+Lines executed:4.35% of 115
+Creating 'hashtable_policy.h.gcov'
+
+File '/usr/include/c++/7/tuple'
+Lines executed:0.00% of 22
+Creating 'tuple.gcov'
+
+File '/usr/include/c++/7/bits/stl_function.h'
+Lines executed:0.00% of 2
+Creating 'stl_function.h.gcov'
+
+File '/usr/include/c++/7/bits/stl_algobase.h'
+Lines executed:71.43% of 14
+Creating 'stl_algobase.h.gcov'
+
+File '/usr/include/c++/7/bits/move.h'
+Lines executed:25.00% of 8
+Creating 'move.h.gcov'
+
+File '/usr/include/c++/7/bits/stl_pair.h'
+Lines executed:0.00% of 6
+Creating 'stl_pair.h.gcov'
+
+File '/usr/include/c++/7/utility'
+Lines executed:0.00% of 4
+Creating 'utility.gcov'
+
+File '/usr/include/c++/7/bits/hashtable.h'
+Lines executed:18.31% of 142
+Creating 'hashtable.h.gcov'
+
+File '/usr/include/c++/7/ext/aligned_buffer.h'
+Lines executed:0.00% of 4
+Creating 'aligned_buffer.h.gcov'
+
+File '/usr/include/c++/7/bits/stl_uninitialized.h'
+Lines executed:50.00% of 14
+Creating 'stl_uninitialized.h.gcov'
+
+File '/usr/include/c++/7/bits/allocator.h'
+Lines executed:80.00% of 5
+Creating 'allocator.h.gcov'
+
+File '/usr/include/c++/7/bits/ptr_traits.h'
+Lines executed:0.00% of 2
+Creating 'ptr_traits.h.gcov'
+
+File '/usr/include/c++/7/bits/stl_construct.h'
+Lines executed:100.00% of 7
+Creating 'stl_construct.h.gcov'
+
+File '/usr/include/c++/7/bits/stl_vector.h'
+Lines executed:72.00% of 50
+Creating 'stl_vector.h.gcov'
+
+File '/usr/include/c++/7/bits/stl_iterator.h'
+Lines executed:0.00% of 11
+Creating 'stl_iterator.h.gcov'
+
+File '/usr/include/c++/7/bits/unordered_map.h'
+Lines executed:38.46% of 13
+Creating 'unordered_map.h.gcov'
+
+File 'src/algorithms/trie.h'
+Lines executed:0.00% of 1
+Creating 'trie.h.gcov'
+
+File 'src/algorithms/corrector.h'
+Lines executed:0.00% of 1
+Creating 'corrector.h.gcov'
+
+File '/usr/include/c++/7/bits/functional_hash.h'
+Lines executed:0.00% of 2
+Creating 'functional_hash.h.gcov'
+
+File '/usr/include/c++/7/bits/char_traits.h'
+Lines executed:0.00% of 4
+Creating 'char_traits.h.gcov'
+
+File '/usr/include/c++/7/new'
+Lines executed:0.00% of 3
+Creating 'new.gcov'
+

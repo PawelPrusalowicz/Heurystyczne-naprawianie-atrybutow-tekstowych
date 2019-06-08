@@ -1,0 +1,24 @@
+Running 3 test cases...
+Entering test module "Master Test Suite"
+test/speed_test.cpp(130): Entering test suite "TEST NORVIG"
+test/speed_test.cpp(131): Entering test case "test_norvig_speed"
+NORVIG SEARCH TIME: 18960289 MICROSECONDS, MATCHES: 1793 SETUP TIME: 212226
+
+Test case TEST NORVIG/test_norvig_speed did not check any assertions
+test/speed_test.cpp(131): Leaving test case "test_norvig_speed"; testing time: 19172647us
+test/speed_test.cpp(130): Leaving test suite "TEST NORVIG"; testing time: 19173233us
+test/speed_test.cpp(134): Entering test suite "TEST TRIE"
+test/speed_test.cpp(135): Entering test case "test_trie_algorithm_speed"
+TRIE SEARCH TIME: 910991 MICROSECONDS, MATCHES: 2128 SETUP TIME: 848444
+
+Test case TEST TRIE/test_trie_algorithm_speed did not check any assertions
+test/speed_test.cpp(135): Leaving test case "test_trie_algorithm_speed"; testing time: 1750495us
+test/speed_test.cpp(134): Leaving test suite "TEST TRIE"; testing time: 1750725us
+test/speed_test.cpp(138): Entering test suite "TEST SYMSPELL ADAPTER"
+test/speed_test.cpp(139): Entering test case "test_symspell_adapter_speed"
+SYMSPELL ADAPTER SEARCH TIME: 388351 MICROSECONDS, MATCHES: 26883 SETUP TIME: 8365623
+
+Test case TEST SYMSPELL ADAPTER/test_symspell_adapter_speed did not check any assertions
+test/speed_test.cpp(139): Leaving test case "test_symspell_adapter_speed"; testing time: 8730130us
+test/speed_test.cpp(138): Leaving test suite "TEST SYMSPELL ADAPTER"; testing time: 8730405us
+Leaving test module "Master Test Suite"; testing time: 29655503us

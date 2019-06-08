@@ -1,6 +1,10 @@
 #ifndef symspell6_h
 #define symspell6_h
-
+/*!
+*\brief Implementation of SymSpell algorithm.
+*
+* Implementation of SymSpell algorithm from github.com/erhanbaris/SymSpellPlusPlus
+*/
 #include <stdint.h>
 #include <vector>
 #include <functional>
@@ -82,17 +86,23 @@ namespace symspell {
             return finded - text + 1;
         }
     }
-
+	/*!
+	* \brief SymSpell element
+	*/
     struct Hash64 {
         size_t operator()(uint64_t k) const { return (k ^ 14695981039346656037ULL) * 1099511628211ULL; }
     };
-
+	/*!
+	* \brief SymSpell element
+	*/
     struct comp_c_string {
         bool operator()(const char *s1, const char *s2) const {
             return (s1 == s2) || (s1 && s2 && strcmp(s1, s2) == 0);
         }
     };
-
+	/*!
+	* \brief SymSpell element
+	*/
     struct hash_c_string {
         void hash_combine(size_t& seed, const char& v)
         {
@@ -184,8 +194,17 @@ namespace symspell {
          * ########## END ##########
          */
 
+	/*!
+	* \brief SymSpell element
+	*/
     class SuggestionStage;
+	/*!
+	* \brief SymSpell element
+	*/
     template<typename T> class ChunkArray;
+	/*!
+	* \brief SymSpell element
+	*/
     enum class Verbosity
     {
         /// <summary>Top suggestion with the highest term frequency of the suggestions of smallest edit distance found.</summary>
@@ -196,7 +215,9 @@ namespace symspell {
         /// , then by term frequency (slower, no early termination).</summary>
         All
     };
-
+	/*!
+	* \brief SymSpell element
+	*/
     class EditDistance {
     public:
         /// <summary>Wrapper for third party edit distance algorithms.</summary>
@@ -226,7 +247,9 @@ namespace symspell {
         DistanceAlgorithm algorithm;
         int(*distanceComparer)(char const*, char const*);
     };
-
+	/*!
+	* \brief SymSpell element
+	*/
     class SuggestItem
     {
     public:
@@ -294,7 +317,9 @@ namespace symspell {
             return item;
         }
     };
-
+	/*!
+	* \brief SymSpell element
+	*/
     class WordSegmentationItem
     {
     public:
@@ -329,7 +354,9 @@ namespace symspell {
             delete[] correctedString;
         }
     };
-
+	/*!
+	* \brief SymSpell element
+	*/
     template<typename T>
     class ChunkArray
     {
@@ -390,7 +417,9 @@ namespace symspell {
         int32_t Capacity() { return Values.size() * ChunkSize; }
     };
 
-
+	/*!
+	* \brief SymSpell element
+	*/
     class SuggestionStage
     {
     public:
@@ -481,13 +510,18 @@ namespace symspell {
         }
 
     public:
+		/*!
+		* \brief SymSpell element
+		*/
         class Node
         {
         public:
             const char* suggestion;
             int64_t next;
         };
-
+		/*!
+		* \brief SymSpell element
+		*/
         class Entry
         {
         public:
@@ -496,7 +530,9 @@ namespace symspell {
         };
     };
 
-
+	/*!
+	* \brief SymSpell algorithm implementation
+	*/
     class SymSpell {
     public:
         SymSpell(int32_t initialCapacity = defaultInitialCapacity, int32_t maxDictionaryEditDistance = defaultMaxEditDistance, int32_t prefixLength = defaultPrefixLength, int32_t countThreshold = defaultCountThreshold, int32_t compactLevel = defaultCompactLevel)

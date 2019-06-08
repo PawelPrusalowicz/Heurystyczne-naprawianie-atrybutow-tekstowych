@@ -11,7 +11,12 @@
 #include <stdio.h>
 
 #include "norvig.h"
-
+/*!
+*\file
+*\brief Definition of Norvig class.
+*
+* File includes implementation of Norvig class.
+*/
 
 using namespace std;
 

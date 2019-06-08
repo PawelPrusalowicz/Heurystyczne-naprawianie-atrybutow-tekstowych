@@ -11,7 +11,12 @@
 #include <iterator>
 #include "trie.h"
 #include "trie_algorithm.h"
-
+/*!
+*\file
+*\brief Definition of Trie_Algorithm class.
+*
+* File includes implementation of Trie_Algorithm class.
+*/
 
 
 Trie_Algorithm::Trie_Algorithm(string path) {
@@ -30,7 +35,6 @@ Trie_Algorithm::Trie_Algorithm(string path) {
 
 void Trie_Algorithm::search_recursive(Trie* p_tree, char ch, const string& word, vector<int>& previous_row, int max_cost, unordered_map <string, int>& results) {
     
-    //const int max_cost = 1;
     const int too_big_distance = 10;
     
     int previous_row_size = previous_row.size();
@@ -63,7 +67,9 @@ void Trie_Algorithm::search_recursive(Trie* p_tree, char ch, const string& word,
     }
     
 }
-
+/*!
+* Method overloaded for get_matches() with default parameter max_cost set as 1
+*/
 unordered_map <string, int> Trie_Algorithm::get_matches(string word) {
     return get_matches(word, 1); }
 

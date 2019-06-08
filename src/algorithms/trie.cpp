@@ -19,7 +19,7 @@ using namespace std;
 
 int Trie::insert(string added_word,  bool structure_beginning, string remaining_letters = ""){
     
-    //the first time we call insert
+    //For the first time we call insert
     if(structure_beginning == true) {
         remaining_letters = added_word;
     }

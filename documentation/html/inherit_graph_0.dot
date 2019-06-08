@@ -1,0 +1,14 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="Corrector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_corrector.html",tooltip="Provides a base for correction algorithms."];
+  Node0 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 [label="Norvig",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_norvig.html",tooltip="Declaration of methods and structures needed to perform word correction using Norvig algorithm."];
+  Node0 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="symspell::Symspell\l_Adapter",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classsymspell_1_1_symspell___adapter.html",tooltip="Interface to SymSpell class. Adaptation includes dictionary loading and passing word for correction p..."];
+  Node0 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Trie_Algorithm",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trie___algorithm.html",tooltip="Defines an algorithm for searching best matches for a word using Trie structure."];
+}

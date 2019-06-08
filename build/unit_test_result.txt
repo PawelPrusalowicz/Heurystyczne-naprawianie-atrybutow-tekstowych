@@ -1,0 +1,47 @@
+Running 14 test cases...
+Entering test module "Master Test Suite"
+test/unit_test.cpp(183): Entering test suite "TEST NORVIG"
+test/unit_test.cpp(184): Entering test case "test_norvig_constructor"
+test/unit_test.cpp(184): Leaving test case "test_norvig_constructor"; testing time: 427us
+test/unit_test.cpp(185): Entering test case "test_norvig_create_edits"
+test/unit_test.cpp(185): Leaving test case "test_norvig_create_edits"; testing time: 2573us
+test/unit_test.cpp(186): Entering test case "test_norvig_create_double_edits"
+test/unit_test.cpp(186): Leaving test case "test_norvig_create_double_edits"; testing time: 309224us
+test/unit_test.cpp(187): Entering test case "test_norvig_getmatches"
+test/unit_test.cpp(187): Leaving test case "test_norvig_getmatches"; testing time: 918us
+test/unit_test.cpp(183): Leaving test suite "TEST NORVIG"; testing time: 313600us
+test/unit_test.cpp(190): Entering test suite "TEST TRIE"
+test/unit_test.cpp(191): Entering test case "test_trie_constructor"
+test/unit_test.cpp(191): Leaving test case "test_trie_constructor"; testing time: 117us
+test/unit_test.cpp(192): Entering test case "test_trie_insert"
+test/unit_test.cpp(192): Leaving test case "test_trie_insert"; testing time: 225us
+test/unit_test.cpp(193): Entering test case "test_trie_algorithm_constructor"
+test/unit_test.cpp(193): Leaving test case "test_trie_algorithm_constructor"; testing time: 1667us
+test/unit_test.cpp(194): Entering test case "test_trie_algorithm_get_matches"
+test/unit_test.cpp(111): error: in "TEST TRIE/test_trie_algorithm_get_matches": check matches.count("abdicate") == 1 has failed [0 != 1]
+test/unit_test.cpp(194): Leaving test case "test_trie_algorithm_get_matches"; testing time: 260us
+test/unit_test.cpp(190): Leaving test suite "TEST TRIE"; testing time: 2616us
+test/unit_test.cpp(197): Entering test suite "TEST SYMSPELL ADAPTER"
+test/unit_test.cpp(198): Entering test case "test_symspell_adapter_constructor"
+test/unit_test.cpp(198): Leaving test case "test_symspell_adapter_constructor"; testing time: 514us
+test/unit_test.cpp(199): Entering test case "test_symspell_get_matches"
+test/unit_test.cpp(199): Leaving test case "test_symspell_get_matches"; testing time: 361us
+test/unit_test.cpp(197): Leaving test suite "TEST SYMSPELL ADAPTER"; testing time: 1029us
+test/unit_test.cpp(202): Entering test suite "TEST DICTIONARY"
+test/unit_test.cpp(203): Entering test case "test_get_words_set"
+test/unit_test.cpp(145): error: in "TEST DICTIONARY/test_get_words_set": check wordset.size() > 0 == true has failed [false != true]
+test/unit_test.cpp(203): Leaving test case "test_get_words_set"; testing time: 185us
+test/unit_test.cpp(202): Leaving test suite "TEST DICTIONARY"; testing time: 261us
+test/unit_test.cpp(206): Entering test suite "TEST WORD RATING"
+test/unit_test.cpp(207): Entering test case "test_find_most_probable_result"
+unknown location(0): fatal error: in "TEST WORD RATING/test_find_most_probable_result": signal: integer divide by zero; address of failing instruction: 0x55dca9fed90d
+test/unit_test.cpp(207): Leaving test case "test_find_most_probable_result"; testing time: 606us
+test/unit_test.cpp(206): Leaving test suite "TEST WORD RATING"; testing time: 677us
+test/unit_test.cpp(209): Entering test suite "TEST ENGLISH WORD POPULARITY"
+test/unit_test.cpp(210): Entering test case "test_english_word_popularity_constructor"
+test/unit_test.cpp(210): Leaving test case "test_english_word_popularity_constructor"; testing time: 962us
+test/unit_test.cpp(211): Entering test case "test_get_word_percentage_in_language"
+test/unit_test.cpp(173): error: in "TEST ENGLISH WORD POPULARITY/test_get_word_percentage_in_language": check percentage > 0.005 == true has failed [false != true]
+test/unit_test.cpp(211): Leaving test case "test_get_word_percentage_in_language"; testing time: 213us
+test/unit_test.cpp(209): Leaving test suite "TEST ENGLISH WORD POPULARITY"; testing time: 1429us
+Leaving test module "Master Test Suite"; testing time: 320106us

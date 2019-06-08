@@ -1,7 +1,13 @@
 
 #ifndef text_correction_h
 #define text_correction_h
-
+/*!
+*\file
+*\brief Declaration of Text_Correction class.
+*
+* File includes structure of Text_Correction class. It provides methods needed to
+* perform data correction, dictionary loading and get information about current dictionary.
+*/
 #include <set>
 #include <string>
 #include <fstream>
@@ -21,24 +27,37 @@
 
 using namespace std;
 
+/*!
+*\brief Defines a an interface needed to perform data correction and dictionary loading.
+*/
 class Text_Correction {
 private:
 
-    vector <string> text;
-    string dictionary_path;
-    Corrector* correction;
+    string dictionary_path; /*!< Stores data about the used dictionary */
+    Corrector* correction; /*!< Algorithm of data correction */
     
 public:
+	
     English_Word_Popularity* word_popularity;
-    
-    Text_Correction(boost::python::str dict_path, boost::python::str pop_words_path);
-    //void loadDictionary(string path);
-    //void loadWordPopularity(string path);
+    /*!
+	* Creates an instance of Text_Correction using paths for dictionary and most-popular-words files.
+	*/
+    Text_Correction(boost::python::str dictionary_path, boost::python::str pop_words_path);
+	/*!
+	* Loads a dictionary, regarding its current state.
+	*/
+    void loadDictionary(boost::python::str dictionary_path);
+	/*!
+	* Performs data correction.
+	*/
     boost::python::list correctData(boost::python::str str_algorithm, bool english_language, boost::python::list ns);
-    //boost::python::list trieCorrection(boost::python::list ns);
-    //boost::python::list symSpellCorrection(boost::python::list ns);
+	/*!
+	* Returns a python list with current dictionary.
+	*/
     boost::python::list getDictionary();
-    
+    /*!
+	* Returns information about object.
+	*/
     string info();
     
 };

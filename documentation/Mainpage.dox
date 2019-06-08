@@ -1,0 +1,15 @@
+/*!
+*
+*\mainpage
+* The aim of the project was implementation of heuristic attributes' correction library for Python.
+*
+* 
+* Main functionalities implemented in text_correction.py library are:
+* - loading user's dictionary from text file
+* - reloading a dictionary from user's level
+* - choosing an algorithm for data correction
+* - passing words for correction as a python list
+* - performing the correction on loaded data
+* 
+* As a part of the project, there are implemented unit test for implemented library.
+*/

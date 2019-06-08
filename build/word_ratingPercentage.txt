@@ -1,0 +1,92 @@
+File 'src/word_rating.cpp'
+Lines executed:26.83% of 41
+Creating 'word_rating.cpp.gcov'
+
+File '/usr/include/c++/7/iostream'
+Lines executed:100.00% of 1
+Creating 'iostream.gcov'
+
+File '/usr/include/c++/7/ext/new_allocator.h'
+Lines executed:64.29% of 14
+Creating 'new_allocator.h.gcov'
+
+File '/usr/include/c++/7/bits/alloc_traits.h'
+Lines executed:50.00% of 8
+Creating 'alloc_traits.h.gcov'
+
+File '/usr/include/c++/7/bits/basic_string.h'
+Lines executed:0.00% of 6
+Creating 'basic_string.h.gcov'
+
+File '/usr/include/c++/7/ext/aligned_buffer.h'
+Lines executed:33.33% of 12
+Creating 'aligned_buffer.h.gcov'
+
+File '/usr/include/c++/7/bits/hashtable_policy.h'
+Lines executed:68.37% of 98
+Creating 'hashtable_policy.h.gcov'
+
+File '/usr/include/c++/7/bits/stl_function.h'
+Lines executed:33.33% of 6
+Creating 'stl_function.h.gcov'
+
+File '/usr/include/c++/7/bits/hashtable.h'
+Lines executed:80.51% of 118
+Creating 'hashtable.h.gcov'
+
+File '/usr/include/c++/7/bits/move.h'
+Lines executed:75.00% of 8
+Creating 'move.h.gcov'
+
+File '/usr/include/c++/7/bits/stl_tree.h'
+Lines executed:9.77% of 133
+Creating 'stl_tree.h.gcov'
+
+File '/usr/include/c++/7/utility'
+Lines executed:100.00% of 4
+Creating 'utility.gcov'
+
+File '/usr/include/c++/7/bits/stl_pair.h'
+Lines executed:80.00% of 10
+Creating 'stl_pair.h.gcov'
+
+File '/usr/include/c++/7/bits/stl_algobase.h'
+Lines executed:0.00% of 13
+Creating 'stl_algobase.h.gcov'
+
+File '/usr/include/c++/7/bits/allocator.h'
+Lines executed:100.00% of 3
+Creating 'allocator.h.gcov'
+
+File '/usr/include/c++/7/bits/ptr_traits.h'
+Lines executed:0.00% of 2
+Creating 'ptr_traits.h.gcov'
+
+File '/usr/include/c++/7/bits/stl_iterator.h'
+Lines executed:100.00% of 9
+Creating 'stl_iterator.h.gcov'
+
+File '/usr/include/c++/7/bits/stl_set.h'
+Lines executed:0.00% of 7
+Creating 'stl_set.h.gcov'
+
+File '/usr/include/c++/7/bits/stl_algo.h'
+Lines executed:0.00% of 4
+Creating 'stl_algo.h.gcov'
+
+File '/usr/include/c++/7/bits/unordered_map.h'
+Lines executed:90.00% of 10
+Creating 'unordered_map.h.gcov'
+
+File '/usr/include/c++/7/bits/functional_hash.h'
+Lines executed:0.00% of 2
+Creating 'functional_hash.h.gcov'
+
+File '/usr/include/c++/7/bits/char_traits.h'
+Lines executed:0.00% of 4
+Creating 'char_traits.h.gcov'
+
+File '/usr/include/c++/7/new'
+Lines executed:0.00% of 3
+Creating 'new.gcov'
+

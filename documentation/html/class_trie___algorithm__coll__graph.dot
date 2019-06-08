@@ -1,0 +1,11 @@
+digraph "Trie_Algorithm"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node2 [label="{Trie_Algorithm\n||+ Trie_Algorithm()\l+ search_recursive()\l+ get_matches()\l+ get_matches()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Defines an algorithm for searching best matches for a word using Trie structure."];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node3 [label="{Corrector\n||+ Corrector()\l+ get_matches()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_corrector.html",tooltip="Provides a base for correction algorithms."];
+  Node4 -> Node2 [color="grey25",fontsize="10",style="solid",label=" -trie" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node4 [label="{Trie\n|+ word\l+ children\l|+ insert()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trie.html",tooltip="Defines a Trie structure."];
+}

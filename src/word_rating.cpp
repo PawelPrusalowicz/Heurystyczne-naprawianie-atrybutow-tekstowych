@@ -12,14 +12,24 @@
 #include <unordered_map>
 
 #include "word_rating.h"
-
+/*!
+*\file
+*\brief Definition of Word_Rating class.
+*
+* File includes implementation of Word_Rating class.
+*/
 #define substitution_mistake_probability 1.65
 #define insertion_mistake_probability 0.67
 #define omission_mistake_probability 0.8
 
 using namespace std;
 
-
+/*!
+* \param [in] best_matches Similar words to the one to be corrected, extracted during spelling correction algorithm
+* \param [in] word_with_mistake Word to be corrected
+* \param [in] english_language Logiacal value that indicates if language of rating is english
+* \return best_match Most probable word
+*/
 string Word_Rating::findMostProbableResult( unordered_map<string,int> best_matches, string word_with_mistake, bool english_language ) {
     
     // if no matches were found, the word stays the same
